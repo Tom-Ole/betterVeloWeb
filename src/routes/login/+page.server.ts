@@ -9,7 +9,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	if (event.locals.user) {
-		return redirect(302, '/demo/lucia');
+		return redirect(302, '/');
 	}
 	return {};
 };
@@ -21,10 +21,10 @@ export const actions: Actions = {
 		const password = formData.get('password');
 
 		if (!validateUsername(username)) {
-			return fail(400, { message: 'Invalid username (min 3, max 31 characters, alphanumeric only)' });
+			return fail(400, { message: 'Invalid username' });
 		}
 		if (!validatePassword(password)) {
-			return fail(400, { message: 'Invalid password (min 6, max 255 characters)' });
+			return fail(400, { message: 'Invalid password' });
 		}
 
 		const results = await db
@@ -51,7 +51,7 @@ export const actions: Actions = {
 		const session = await auth.createSession(sessionToken, existingUser.id);
 		auth.setSessionTokenCookie(event, sessionToken, session.expiresAt);
 
-		return redirect(302, '/demo/lucia');
+		return redirect(302, '/');
 	},
 	register: async (event) => {
 		const formData = await event.request.formData();
@@ -83,7 +83,7 @@ export const actions: Actions = {
 		} catch (e) {
 			return fail(500, { message: 'An error has occurred' });
 		}
-		return redirect(302, '/demo/lucia');
+		return redirect(302, '/');
 	},
 };
 
@@ -106,7 +106,7 @@ function validateUsername(username: unknown): username is string {
 function validatePassword(password: unknown): password is string {
 	return (
 		typeof password === 'string' &&
-		password.length >= 6 &&
+		password.length >= 3 &&
 		password.length <= 255
 	);
 }
