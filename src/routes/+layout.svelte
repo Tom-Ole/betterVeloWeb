@@ -6,18 +6,15 @@
 </script>
 
 <header class="headerContainer">
-    {#if data.user}
+    {#if data}
     <nav class="navContainer">
         <a href="/" class="navItem">Home</a>
         <a href="/profile" class="navItem">Profile</a>
-        <form method="post" action="?/logout" class="navItem" use:enhance>
-            <button>Sign out</button>
-        </form>
     </nav>
     {:else}
     <nav class="navContainer">
-        <a href="/login" class="navItem">Login</a>
-        <a href="/register" class="navItem">Register</a>
+        <a href="?/login" class="navItem">Login</a>
+        <a href="?/register" class="navItem">Register</a>
     </nav>
     {/if}
 </header>

@@ -9,6 +9,7 @@ import type { Actions, PageServerLoad } from './$types';
 
 export const load: PageServerLoad = async (event) => {
 	if (event.locals.user) {
+		console.log("LOGIN PAGE: redirect to /")
 		return redirect(302, '/');
 	}
 	return {};

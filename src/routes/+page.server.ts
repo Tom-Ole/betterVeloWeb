@@ -3,11 +3,11 @@ import { fail, redirect } from '@sveltejs/kit';
 import type { Actions, PageServerLoad } from './$types';
 // import type { Actions, PageServerLoad } from './demo/lucia/$types';
 
-export const load: PageServerLoad = async (event) => {
-	if (!event.locals.user) {
-		return redirect(302, '/login');
-	}
-	return { user: event.locals.user };
+export const load: PageServerLoad = async (event: any) => {
+    if (!event.locals.user) {
+		console.log("PAGE: redirect to login")
+        throw redirect(302, '/login');
+    }
 };
 
 export const actions: Actions = {

@@ -16,6 +16,6 @@
 		<input type="password" name="password" />
 	</label>
 	<button>Login</button>
-	<button formaction="/register">Register</button>
+	<button formaction="?/register">Register</button>
 </form>
 <p style="color: red">{form?.message ?? ""}</p>
